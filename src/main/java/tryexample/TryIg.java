@@ -1,4 +1,4 @@
-package trym;
+package tryexample;
 class A extends Exception{}
 class B extends A{}
 class C extends B{}
