@@ -6,7 +6,7 @@ import java.util.List;
 public class CoinChange {
 	
 	// naive approach 2^n time complexity
-	static int CoinChnageNoOfWaysRC(int coin[], int N, int n) {
+	static int coinChangeNoOfWaysRC(int coin[], int N, int n) {
 		// Base Case
 		if (N == 0)
 			return 1;
@@ -15,9 +15,9 @@ public class CoinChange {
 			return 0;
 
 		if (coin[n - 1] <= N)
-			return CoinChnageNoOfWaysRC(coin, N - coin[n - 1], n) + CoinChnageNoOfWaysRC(coin, N, n - 1);
+			return coinChangeNoOfWaysRC(coin, N - coin[n - 1], n) + coinChangeNoOfWaysRC(coin, N, n - 1);
 
-		return CoinChnageNoOfWaysRC(coin, N, n - 1);
+		return coinChangeNoOfWaysRC(coin, N, n - 1);
 	}
 	
 	public static int totalWaysToMakeChange(int coins[],int sum,int n) {
@@ -164,7 +164,7 @@ public class CoinChange {
 		System.out.println(minimunNumberOfCoins(arr, 5, arr.length));
 	    System.out.println(totalWaysToMakeChange( arr,5,arr.length));
 	    System.out.println(numberOfSolutionsOnSpace(5, arr));
-	    System.out.println(CoinChnageNoOfWaysRC(arr, n, arr.length));
+	    System.out.println(coinChangeNoOfWaysRC(arr, n, arr.length));
 
 	}
 }
