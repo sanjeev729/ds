@@ -3,7 +3,7 @@ package arrays.oneToN;
 public class SwapSort {
 
 	public static void main(String[] args) {
-		int arr[] = { 3,5,3,1,4,1 };
+		int[] arr = { 3,5,3,1,4,1 };
 		swapSort(arr);
 		
 		for (int i : arr) {
