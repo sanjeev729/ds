@@ -1,7 +1,7 @@
 package dp;
 
 public class MaximumSubarrySum {
-	// Kadane's algo only works if atleast one element is positive
+	// Kadane's algo only works if at least one element is positive
 	static int maxSubArraySum(int a[]) {
 		int size = a.length;
 		int max_so_far = Integer.MIN_VALUE, max_ending_here = 0, sIndex = 0, eIndex = 0, s = 0;
@@ -21,7 +21,7 @@ public class MaximumSubarrySum {
 		return max_so_far;
 	}
 
-	// Dynamic programic way works for all negative no's also
+	// Dynamic programming way works for all negative no's also
 	static int maxSubArraySumDP(int a[]) {
 		int size = a.length;
 		int max_so_far = a[0], max_ending_here = a[0];
