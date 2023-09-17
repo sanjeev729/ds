@@ -121,7 +121,16 @@ public class f_PrintPowerSet {
 
   }
 
-  private static void combinationSum(int[] input, String aux, String output, int sum, int index) {
+  /**
+   * combination sum I
+   * all combinations and each element can be picked more than one times.
+   * @param input
+   * @param aux
+   * @param output
+   * @param sum
+   * @param index
+   */
+  private static void combinationSumI(int[] input, String aux, String output, int sum, int index) {
     if (index == input.length) {
       if (sum == 0) {
         System.out.print(aux + ",");
@@ -132,10 +141,38 @@ public class f_PrintPowerSet {
     //check if sum can be reduced by current element or not
     if (input[index] <= sum) {
       str.append(input[index]);
-      combinationSum(input, str.toString(), output, sum - input[index], index);
+      combinationSumI(input, str.toString(), output, sum - input[index], index);
       str.deleteCharAt(str.length() - 1);
     }
-    combinationSum(input, str.toString(), output, sum, index + 1);
+    combinationSumI(input, str.toString(), output, sum, index + 1);
+
+  }
+
+  /**
+   * combination sum II
+   * all unique combinations and each element can be picked only one times.
+   * this is different from printPowerSet,provide array with duplicate elements you will get the difference .
+   * @param input
+   * @param aux
+   * @param output
+   * @param sum
+   * @param index
+   */
+  private static void combinationSumII(int[] input, String aux, String output, int sum, int index) {
+    if (index == input.length) {
+      if (sum == 0) {
+        System.out.print(aux + ",");
+      }
+      return;
+    }
+    StringBuilder str = new StringBuilder(aux);
+    //check if sum can be reduced by current element or not
+    if (input[index] <= sum) {
+      str.append(input[index]);
+      combinationSumII(input, str.toString(), output, sum - input[index], index);
+      str.deleteCharAt(str.length() - 1);
+    }
+    combinationSumII(input, str.toString(), output, sum, index + 1);
 
   }
 
@@ -149,11 +186,11 @@ public class f_PrintPowerSet {
     // printPowerSetUnique(ip, out, unique);
     //System.out.println(unique);
     // System.out.println();
-    int[] arr = {1, 2, 3};
+    int[] arr = {10,1, 2,6,7,1,5};
     List<Integer> output = new ArrayList<>();
     // printPowerSet(arr,0,itr);
-   System.out.println(countAllSetsOfSumK(arr, 0, 0, output, 3)) ;
-    //combinationSum(arr, "", "", 6, 0);
+  // System.out.println(countAllSetsOfSumK(arr, 0, 0, output, 8)) ;
+    combinationSumI(arr, "", "", 8, 0);
 
   }
 
