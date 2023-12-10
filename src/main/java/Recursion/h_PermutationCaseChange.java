@@ -1,6 +1,6 @@
 package Recursion;
 
-public class h_PermutationCaseChnage {
+public class h_PermutationCaseChange {
 
 	private static void permutationCaseChange(String input, String output) {
 		if (input.isEmpty()) {
@@ -22,7 +22,7 @@ public class h_PermutationCaseChnage {
 
 	public static void main(String[] args) {
 
-		String ip = "AB";
+		String ip = "ABC";
 		String out = "";
 		permutationCaseChange(ip, out);
 

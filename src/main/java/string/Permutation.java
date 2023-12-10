@@ -53,7 +53,7 @@ public class Permutation {
 			{
 				str = swap(str, l, i);
 				permuteWithoutBacktracking(str, l + 1);
-				//str = swap(str, l, i);
+				str = swap(str, l, i);
 			}
 		}
 	}

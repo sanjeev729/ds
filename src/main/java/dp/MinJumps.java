@@ -1,5 +1,7 @@
 package dp;
 
+import static java.lang.Math.min;
+
 public class MinJumps {
 
 	// Q8. Determine if you are able to reach the last index.
@@ -27,6 +29,31 @@ public class MinJumps {
 		return jumps;
 	}
 
+   //Frog jump : minimum no of jumps req to reach end.
+	public static int minjumps(int n) {
+		if (n == 0)
+			return 0;
+		if (n == 1)
+			return 1;
+
+		int l = 1 + minjumps(n - 1);
+		int r = 1 + minjumps(n - 2);
+		return Math.min(l, r);
+
+	}
+
+	public static int minEnergy(int n,int arr[]) {
+		if (n == 0)
+			return 0;
+		int r = Integer.MAX_VALUE;
+		int l = Math.abs(arr[n - 1] - arr[n - 1 - 1]) + minjumps(n - 1);
+		if (n > 1) {
+			r = Math.abs(arr[n - 1] - arr[n - 1 - 2]) + minjumps(n - 2);
+		}
+		return Math.min(l, r);
+
+	}
+
 	private static int minJumps(int[] arr, int n) {
 		int jumps[] = new int[n]; // jumps[n-1] will hold the
 									// result
@@ -44,7 +71,7 @@ public class MinJumps {
 			jumps[i] = Integer.MAX_VALUE;
 			for (j = 0; j < i; j++) {
 				if (i <= j + arr[j] && jumps[j] != Integer.MAX_VALUE) {
-					jumps[i] = Math.min(jumps[i], jumps[j] + 1);
+					jumps[i] = min(jumps[i], jumps[j] + 1);
 					break;
 				}
 			}
@@ -57,5 +84,7 @@ public class MinJumps {
 
 		System.out.println("Minimum number of jumps to reach end is : " + minJumps(arr, arr.length) );
 		System.out.println(minNoOfjumps(arr));
+		System.out.println("MIN jumps :"+minjumps(4));
+		System.out.println("MIN energy :"+minEnergy(arr.length,arr ));
 	}
 }

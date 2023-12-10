@@ -6,6 +6,8 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Map;
+import java.util.HashMap;
 
 public class SlidingWindowFixed {
 	
@@ -53,7 +55,7 @@ public class SlidingWindowFixed {
 		int i = 0;
 		int j = 0;
 		Queue<Integer> negativeList = new LinkedList<>();
-		List<Integer> ans=new ArrayList<>();
+		List<Integer> ans = new ArrayList<>();
 		while (j < arr.length) {
 
 			if (arr[j] < 0) {
@@ -109,6 +111,46 @@ public class SlidingWindowFixed {
 			}
 		}
 		return ans;
+	}
+
+	public int CountOfOccurrencesOfAnagrams(String toCheck, String toSearch) {
+		int result = 0;
+		int i = 0;// starting point
+		int j = 0;// end point
+		int k = toSearch.length(); //window size
+
+		//char set
+		Map<Character, Integer> keyValuePairs = new HashMap<>();
+		for (int s = 0; s < toSearch.length(); s++) {
+			if (keyValuePairs.containsKey(toSearch.charAt(s)))
+				keyValuePairs.put(toSearch.charAt(s), keyValuePairs.get(toSearch.charAt(s)) + 1);
+			else
+				keyValuePairs.put(toSearch.charAt(s), 1);
+		}
+		int count = keyValuePairs.size();
+
+		//sliding window
+		while (j < toCheck.length()) {
+			if (keyValuePairs.containsKey(toCheck.charAt(j))) {
+				keyValuePairs.put(toCheck.charAt(j),keyValuePairs.get(toCheck.charAt(j)) -1);
+				if (keyValuePairs.get(toCheck.charAt(j)) == 0)
+					count--;
+			}
+			if ((j - i + 1) < k) {
+				j++;
+			} else if ((j - i + 1) == k) {
+				if (count == 0)
+					result++;
+				if (keyValuePairs.containsKey(toCheck.charAt(i))) {
+					keyValuePairs.put(toCheck.charAt(i),keyValuePairs.get(toCheck.charAt(i))+1);
+					if (keyValuePairs.get(toCheck.charAt(i)) == 1)
+						count++;
+				}
+				i++;
+				j++;
+			}
+		}
+		return result;
 	}
 
 }
