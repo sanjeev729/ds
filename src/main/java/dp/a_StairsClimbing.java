@@ -1,6 +1,6 @@
 package dp;
 
-public class StairsClimbing {
+public class a_StairsClimbing {
 	// Q7.No of ways to climb n stairs
 	public static int countWays(int n) {
 

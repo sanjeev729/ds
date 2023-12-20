@@ -75,10 +75,10 @@ public class h2_Subsequences {
    */
   private static void allSubsetsDistinct(int ind, int[] arr, List<Integer> temp, List<List<Integer>> ans) {
     ans.add(new ArrayList<>(temp));
-    Set<Integer> set = new HashSet<>();
+    List<Integer> list = new ArrayList<>();
     for (int i = ind; i < arr.length; i++) {
-      if (!set.contains(arr[i])) {
-        set.add(arr[i]);
+      if (!list.contains(arr[i])) {
+        list.add(arr[i]);
         temp.add(arr[i]);
         allSubsetsDistinct(i + 1, arr, temp, ans);
         temp.remove(temp.size() - 1);
@@ -163,20 +163,20 @@ public class h2_Subsequences {
 
   public static void main(String[] args) {
 
-    int[] arr = {1, 2,3};
+    int[] arr = {1, 1,2,3};
     List<List<Integer>> ans = new ArrayList<>();
     boolean[] freq = new boolean[10];
     Set<Integer> set = new HashSet<>();
     //allSubsets(0, arr, new ArrayList<Integer>(), ans);
     //allSubsetsSumK(0, arr, new ArrayList<Integer>(), ans, 5);
     //allSubsetsSumKMultiPick(0, arr, new ArrayList<Integer>(), ans, 5);
-    //allSubsetsDistinct(0, arr, new ArrayList<Integer>(), ans);
+    allSubsetsDistinct(0, arr, new ArrayList<Integer>(), ans);
     //allSubsetsDistinctSumK(0, arr, new ArrayList<Integer>(), ans, 5);
-    permuteII(arr, new ArrayList<>(), ans, freq);
+   // permuteII(arr, new ArrayList<>(), ans, freq);
     System.out.println(ans);
-    ans = new ArrayList<>();
-    permuteI(arr, new ArrayList<>(), ans);
-    System.out.println(ans);
+   // ans = new ArrayList<>();
+   // permuteI(arr, new ArrayList<>(), ans);
+  //  System.out.println(ans);
 
   }
 
