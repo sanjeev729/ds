@@ -2,7 +2,7 @@ package dp;
 public class ShortestCommonSupersequence
 { 
 	int scs(char[] X, char[] Y, int m, int n) {
-		return X.length + Y.length - LongestCommonSubsequence.lcs(X, Y, m, n);
+		return X.length + Y.length - LongestCommonSubsequence.lcs(m, n, X, Y);
 	}
 	
 	void scsPrint(char[] X, char[] Y, int m, int n) {

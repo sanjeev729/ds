@@ -1,6 +1,6 @@
-package dp.knapsack.unbounded;
+package dp;
 
-public class RodCutting {
+public class e_RodCutting {
 
 
 	static int cutRod(int i, int N, int price[]) {

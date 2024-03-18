@@ -9,20 +9,20 @@ import java.util.Set;
 
 public class h2_Subsequences {
 
-  private static void allSubsets(int i, int[] input, List<Integer> temp, List<List<Integer>> ans) {
+  private static void allSubsets(int i, int[] arr, List<Integer> temp, List<List<Integer>> ans) {
 
     //base case
-    if (i >= input.length) {
+    if (i >= arr.length) {
       ans.add(new ArrayList<>(temp));
       return;
     }
 
     //take
-    temp.add(input[i]);
-    allSubsets(i + 1, input, temp, ans);
+    temp.add(arr[i]);
+    allSubsets(i + 1, arr, temp, ans);
     temp.remove(temp.size() - 1);
     //not take
-    allSubsets(i + 1, input, temp, ans);
+    allSubsets(i + 1, arr, temp, ans);
   }
 
   private static void allSubsetsSumK(int i, int[] arr, List<Integer> temp, List<List<Integer>> ans, int sum) {
@@ -35,10 +35,12 @@ public class h2_Subsequences {
       return;
     }
 
+    if (arr[i] <= sum) {
     //take
     temp.add(arr[i]);
     allSubsetsSumK(i + 1, arr, temp, ans, sum - arr[i]);
     temp.remove(temp.size() - 1);
+    }
     //not take
     allSubsetsSumK(i + 1, arr, temp, ans, sum);
   }
@@ -53,8 +55,9 @@ public class h2_Subsequences {
       return;
     }
 
-    //take
+
     if (arr[i] <= sum) {
+      //take
       temp.add(arr[i]);
       allSubsetsSumKMultiPick(i, arr, temp, ans, sum - arr[i]);
       temp.remove(temp.size() - 1);

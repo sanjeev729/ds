@@ -1,9 +1,9 @@
-package dp.knapsack.unbounded;
+package dp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoinChange {
+public class d_CoinChange {
 
 
 	static int coinChangeMinCoin(int i, int target, int coin[]) {

@@ -3,12 +3,12 @@ public class LongestPalindomicSubsequence
 { 
 	int lps(char[] X) {
 		int n=X.length;
-		return LongestCommonSubsequence.lcs(X, reverse(X), n, n);
+		return LongestCommonSubsequence.lcs(n, n,X, reverse(X));
 	}
 	
 void lpsPrint(char[] X) {
 		int n=X.length;
-		LongestCommonSubsequence.lcsPrint(X, reverse(X), n, n);
+		LongestCommonSubsequence.lcsPrint(n, n,X, reverse(X));
 	}
 	
 	static char[] reverse(char arr[]){

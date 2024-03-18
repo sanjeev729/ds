@@ -1,6 +1,6 @@
-package dp.knapsack.zeroOne;
+package dp;
 
-public class Knapsack01 {
+public class c_Knapsack01 {
 
 	static int knapsack(int i, int W, int wt[], int val[]) {
 		// Base Case

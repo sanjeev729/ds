@@ -36,6 +36,7 @@ public class MaximumSubarrySum {
 	public static void main(String[] args) {
 		int[] a = { 10, -3, -9, 8,-7, -10, -11 };
 		System.out.println("Maximum contiguous sum is " + maxSubArraySum(a));
+		System.out.println("Maximum contiguous sum is " + maxSubArraySumDP(a));
 	}
 
 }
