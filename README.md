@@ -1,28 +1,66 @@
-# Datastructures and Algorithms
+# Data Structures & Algorithms - Java Edition
 
-LinkedLists Trees Arrays DP
-Threads custom collections
+A comprehensive **Java implementation** of fundamental data structures, algorithms, and concurrent programming patterns with detailed examples, complexity analysis, and real-world applications.
 
-A comprehensive collection of data structure implementations and algorithms with examples, explanations, and analysis.
+**📌 Repository:** [github.com/sanjeev729/ds](https://github.com/sanjeev729/ds)
 
 ## 📚 Table of Contents
 
 - [Overview](#overview)
+- [What's Included](#whats-included)
 - [Data Structures](#data-structures)
+- [Key Topics](#key-topics)
 - [Getting Started](#getting-started)
-- [Implementation Languages](#implementation-languages)
+- [Project Structure](#project-structure)
+- [Building & Running](#building--running)
 - [Contributing](#contributing)
 - [Resources](#resources)
 
 ## Overview
 
-This repository contains implementations of fundamental data structures used in computer science and software development. Each data structure includes:
+This repository contains a comprehensive collection of **Java implementations** for:
+- 📊 **Data Structures**: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, Hash Maps, Heaps, Tries
+- 🧮 **Algorithms**: Sorting, Searching, Dynamic Programming, Backtracking, Graph Algorithms
+- ⚙️ **Concurrency**: Threading, Synchronization, Producer-Consumer patterns, Wait-Notify mechanisms
+- 🔄 **Recursion**: Recursive algorithms and linked list operations
+- 💡 **Advanced Topics**: Design patterns, Matrix operations, Mathematical algorithms
 
-- Clear implementation with comments
+Each implementation includes:
+- Clear, well-commented Java code
 - Time and space complexity analysis
-- Usage examples
-- Common operations
-- Real-world applications
+- Practical usage examples
+- Edge case handling
+- Performance optimization techniques
+
+## What's Included
+
+### 📦 Core Data Structures
+- **Arrays**: Integer arrays, sorting, searching, and manipulation algorithms
+- **Linked Lists**: Singly, doubly, and circular linked lists with recursive examples
+- **Stacks & Queues**: Implementations with practical use cases
+- **Trees**: Binary trees, BSTs, traversals, and path finding
+- **Graphs**: DFS, BFS, shortest path, and spanning trees
+- **Hash Maps**: Custom implementations and collision resolution
+- **Heaps**: Min/Max heaps with priority queue operations
+- **Tries**: String prefix matching and auto-completion
+
+### 🧮 Algorithms
+- **Sorting**: Bubble, Selection, Insertion, Merge, Quick, Heap sort
+- **Searching**: Linear, Binary, Rotated arrays
+- **Dynamic Programming**: Problem-solving with memoization
+- **Backtracking**: N-Queens, Sudoku solver, coin change
+- **Graph Algorithms**: Dijkstra's, Kruskal's, Prim's, topological sort
+- **Matrix Operations**: Rotation, Island counting, minimum cost paths
+- **Mathematical**: GCD, Prime numbers, Power function
+- **String Algorithms**: Pattern matching, reversals, transformations
+
+### ⚙️ Concurrency & Threading
+- **Wait/Notify Pattern**: Producer-consumer with synchronization
+- **Semaphore-based Patterns**: Thread coordination with semaphores
+- **Busy-Wait Pattern**: Simple thread communication examples
+- **BlockingQueue**: Optimized concurrent queue implementations
+- **Thread Synchronization**: Mutex and lock mechanisms
+- **Thread Safety**: Best practices and common pitfalls
 
 ## Data Structures
 
@@ -97,77 +135,232 @@ This repository contains implementations of fundamental data structures used in 
 ### Prerequisites
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/data-structures.git
-cd data-structures
+git clone https://github.com/sanjeev729/ds.git
+cd ds
 
-# Choose your language directory
-cd python/  # or java/, cpp/, javascript/, etc.
+# Ensure you have Java 8+ and Maven installed
+java -version
+mvn -version
+```
+
+### Building the Project
+```bash
+# Build with Maven
+mvn clean compile
+
+# Run tests (if available)
+mvn test
+
+# Package the project
+mvn package
 ```
 
 ### Running Examples
 
-#### Python
-```python
-# Example: Using a Stack
-from stack import Stack
+#### Example 1: Using a Stack
+```java
+// In src/main/java/stack/
+Stack<Integer> stack = new Stack<>();
+stack.push(1);
+stack.push(2);
+stack.push(3);
 
-stack = Stack()
-stack.push(1)
-stack.push(2)
-stack.push(3)
-
-print(stack.pop())  # Output: 3
-print(stack.peek()) # Output: 2
-print(stack.is_empty()) # Output: False
+System.out.println(stack.pop());    // Output: 3
+System.out.println(stack.peek());   // Output: 2
+System.out.println(stack.isEmpty()); // Output: false
 ```
 
-#### JavaScript
-```javascript
-// Example: Using a Binary Search Tree
-const BST = require('./bst');
+#### Example 2: Binary Search Tree
+```java
+// In src/main/java/trees/
+class Node {
+    int data;
+    Node left, right;
+    Node(int data) { this.data = data; }
+}
 
-const tree = new BST();
-tree.insert(50);
-tree.insert(30);
-tree.insert(70);
+Node root = new Node(50);
+root.left = new Node(30);
+root.right = new Node(70);
 
-console.log(tree.search(30)); // true
-console.log(tree.inorder());  // [30, 50, 70]
+// Perform BST operations...
 ```
 
-## Implementation Languages
+#### Example 3: Threading - Producer Consumer
+```java
+// In src/main/java/Educative/Thread/ConsumerProducer/
+// See 1.DemonstrationWaitNotify.java for wait/notify pattern
+// See 2.DemonstrationBusyWait.java for busy-wait pattern
+// See 3.DemonstrationSemaphore.java for semaphore pattern
 
-- **Python** 🐍 - Clear, readable implementations
-- **JavaScript** 🟨 - Web-friendly with modern ES6+ syntax
-- **Java** ☕ - Object-oriented with generics
-- **C++** ⚡ - Performance-optimized with templates
-- **Go** 🔷 - Simple, efficient implementations
-- **Rust** 🦀 - Memory-safe systems programming
+final BlockingQueue<Integer> q = new ArrayBlockingQueue<>(5);
 
-## Directory Structure
+Thread producer = new Thread(() -> {
+    for (int i = 0; i < 50; i++) {
+        q.put(i);
+        System.out.println("Produced: " + i);
+    }
+});
+
+Thread consumer = new Thread(() -> {
+    for (int i = 0; i < 50; i++) {
+        System.out.println("Consumed: " + q.take());
+    }
+});
+
+producer.start();
+consumer.start();
+```
+
+## Project Structure
 
 ```
-data-structures/
+ds/
 ├── README.md
-├── docs/
-│   ├── complexity-analysis.md
-│   ├── algorithms.md
-│   └── interview-questions.md
-├── python/
-│   ├── arrays/
-│   ├── linked_lists/
-│   ├── stacks/
-│   ├── queues/
-│   ├── trees/
-│   ├── graphs/
-│   ├── hash_tables/
-│   └── heaps/
-├── javascript/
-├── java/
-├── cpp/
-├── tests/
-└── examples/
+├── pom.xml                          # Maven configuration
+├── scripts/
+│   ├── git-commit-push.sh          # Git automation script
+│   └── README.md                    # Script documentation
+└── src/
+    └── main/
+        └── java/
+            ├── arrays/              # Array algorithms & problems
+            │   ├── ChocolateDistribution.java
+            │   ├── KthSmallest.java
+            │   ├── MaxSumNonAdjacent.java
+            │   ├── SearchInRotatedArr.java
+            │   └── ... (30+ more)
+            ├── backtracking/        # Backtracking algorithms
+            │   ├── NQueens.java
+            │   ├── SudokuSolver.java
+            │   └── CoinChange.java
+            ├── binarysearch/        # Binary search problems
+            ├── design/              # Design patterns
+            ├── dp/                  # Dynamic programming
+            ├── Educative/
+            │   └── Thread/
+            │       └── ConsumerProducer/
+            │           ├── 1.DemonstrationWaitNotify.java
+            │           ├── 2.DemonstrationBusyWait.java
+            │           └── 3.DemonstrationSemaphore.java
+            ├── graph/               # Graph algorithms
+            │   └── Graph.java
+            ├── hashMap/             # Hash table implementations
+            │   └── LRUCache.java
+            ├── heaps/               # Heap operations
+            ├── linkedlist/          # Linked list operations
+            ├── linkedlistrecursionexamples/
+            │   ├── CustomLinkedList.java
+            │   └── NewCustomListRecusive.java
+            ├── math/                # Mathematical algorithms
+            │   ├── Prime.java
+            │   ├── Gcd.java
+            │   └── Power.java
+            ├── matrix/              # Matrix problems
+            │   ├── RotateMatrix.java
+            │   ├── NumberOfIslands.java
+            │   └── MinimumCostPath.java
+            ├── queue/               # Queue implementations
+            ├── Recursion/           # Recursive algorithms
+            ├── revise/              # LeetCode 75 & interview prep
+            │   └── leetcode75/
+            ├── sorting/             # Sorting algorithms
+            ├── stack/               # Stack implementations
+            ├── string/              # String algorithms
+            ├── thread/              # Threading examples
+            │   └── producerconsumer/
+            ├── trees/               # Tree algorithms
+            ├── trie/                # Trie (prefix tree)
+            └── ... (more packages)
 ```
+
+## Key Topics
+
+### 🎯 Algorithms by Category
+
+**Sorting (O(n log n) optimized)**
+- Merge Sort, Quick Sort, Heap Sort
+- Counting Sort, Radix Sort
+
+**Searching**
+- Binary Search, Linear Search
+- Search in Rotated Array
+
+**Graph Algorithms**
+- Breadth-First Search (BFS)
+- Depth-First Search (DFS)
+- Dijkstra's Algorithm
+- Kruskal's & Prim's Algorithm
+
+**Dynamic Programming**
+- Fibonacci, Longest Common Subsequence
+- 0/1 Knapsack, Coin Change
+- Longest Increasing Subsequence
+
+**Backtracking**
+- N-Queens Problem
+- Sudoku Solver
+- Maze Solving
+
+### 📊 Complex Data Structures
+
+**Custom Collections**
+- Circular Arrays
+- Custom Linked Lists
+- LRU Cache Implementation
+
+**Advanced Trees**
+- Binary Search Trees
+- Tree Traversals (Inorder, Preorder, Postorder)
+- Level Order Traversal
+
+**Thread-Safe Structures**
+- Synchronized BlockingQueue
+- Thread-safe collections with wait/notify
+
+### ⚙️ Concurrency Patterns
+
+**Producer-Consumer Pattern**
+- Wait/Notify mechanism
+- Semaphore-based approach
+- Optimized BlockingQueue
+
+**Thread Synchronization**
+- Synchronized methods
+- Locks and Conditions
+- Race condition prevention
+
+## Building & Running
+
+```bash
+# Compile all Java files
+mvn compile
+
+# Run a specific class (example: arrays)
+java -cp target/classes arrays.ChocolateDistribution
+
+# Run with IDE
+# Open project in IntelliJ IDEA, Eclipse, or VS Code
+# Run individual classes or main methods directly
+
+# Create executable JAR
+mvn package
+java -jar target/ds-1.0-SNAPSHOT.jar
+```
+
+## Git Automation
+
+This project includes a convenient script for committing and pushing changes:
+
+```bash
+# Use the automated git script
+./scripts/git-commit-push.sh "Your commit message here"
+
+# Example
+./scripts/git-commit-push.sh "Optimize: Add O(n) solution to array problem"
+```
+
+For details, see [scripts/README.md](scripts/README.md)
 
 ## Complexity Cheat Sheet
 
@@ -214,47 +407,122 @@ data-structures/
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-structure`)
-3. Add your implementation with tests
-4. Update documentation
-5. Submit a pull request
+1. **Fork** the repository: [github.com/sanjeev729/ds](https://github.com/sanjeev729/ds)
+2. **Create a branch**: `git checkout -b feature/new-algorithm`
+3. **Implement your code** in the appropriate package
+4. **Add documentation** with complexity analysis
+5. **Test thoroughly** with edge cases
+6. **Commit with clear messages**:
+   ```bash
+   ./scripts/git-commit-push.sh "Add: FeatureName with O(n) solution"
+   ```
+7. **Submit a pull request**
 
 ### Contribution Guidelines
-- Include time/space complexity analysis
-- Add comprehensive test cases
-- Follow language-specific coding conventions
-- Update README with new data structures
+- ✅ Use proper Java naming conventions (camelCase for methods, PascalCase for classes)
+- ✅ Include time and space complexity analysis as comments
+- ✅ Add comprehensive test cases
+- ✅ Document edge cases and assumptions
+- ✅ Update README.md with new topics
+- ✅ Follow existing code style
+- ✅ Keep methods focused and single-responsibility
+- ✅ Use meaningful variable names
+
+### Code Style
+```java
+// Good: Clear naming and documentation
+/**
+ * Finds the maximum element in an array
+ * Time: O(n), Space: O(1)
+ */
+public int findMax(int[] arr) {
+    int max = arr[0];
+    for (int num : arr) {
+        max = Math.max(max, num);
+    }
+    return max;
+}
+```
 
 ## Resources
 
-### Books
-- "Introduction to Algorithms" by Cormen, Leiserson, Rivest, and Stein
-- "Data Structures and Algorithms Made Easy" by Narasimha Karumanchi
-- "Cracking the Coding Interview" by Gayle Laakmann McDowell
+### 📚 Books (Recommended)
+- **"Introduction to Algorithms"** by Cormen, Leiserson, Rivest, and Stein - The definitive algorithms textbook
+- **"Data Structures and Algorithms Made Easy"** by Narasimha Karumanchi - Great for practical examples
+- **"Cracking the Coding Interview"** by Gayle Laakmann McDowell - Interview preparation
 
-### Online Resources
-- [Visualgo](https://visualgo.net/) - Algorithm and data structure visualizations
-- [LeetCode](https://leetcode.com/) - Practice problems
-- [GeeksforGeeks](https://www.geeksforgeeks.org/) - Tutorials and examples
+### 🌐 Online Platforms
+- [LeetCode](https://leetcode.com/) - Practice coding problems with multiple solutions
+- [GeeksforGeeks](https://www.geeksforgeeks.org/) - Comprehensive tutorials and examples
+- [Visualgo](https://visualgo.net/) - Interactive algorithm and data structure visualizations
+- [HackerRank](https://www.hackerrank.com/) - Coding challenges and competitions
+- [Educative.io](https://educative.io/) - Interactive coding courses
 
-### Video Courses
-- MIT OpenCourseWare - Introduction to Algorithms
-- Coursera - Algorithms Specialization
-- YouTube - CS Dojo, Tushar Roy
+### 📺 Video Courses
+- **MIT OpenCourseWare** - Introduction to Algorithms (Free)
+- **Coursera - Algorithms Specialization** by UC San Diego
+- **YouTube Channels**:
+  - CS Dojo: Algorithm explanations
+  - Tushar Roy: Detailed algorithm walkthroughs
+  - Abdul Bari: Data structures fundamentals
 
+### 💡 Java-Specific Resources
+- [Oracle Java Documentation](https://docs.oracle.com/javase/) - Official Java API
+- [Java Collections Framework](https://docs.oracle.com/javase/tutorial/collections/) - Built-in data structures
+- [Java Concurrency in Practice](https://jcip.net/) - Threading and concurrency best practices
 
-## Acknowledgments
+### 🏆 Practice Platforms
+- [LeetCode 75](https://leetcode.com/studyplan/leetcode-75/) - Curated interview questions
+- [CodeSignal](https://codesignal.com/) - Coding assessments
+- [InterviewBit](https://www.interviewbit.com/) - Interview preparation
 
-- Contributors and maintainers
-- Computer science educators and textbook authors
-- Open source community for inspiration and feedback
+## FAQ
+
+**Q: How do I run the code?**  
+A: Clone the repo, ensure Java 8+ is installed, run `mvn compile`, then execute classes via IDE or command line.
+
+**Q: Are there test cases?**  
+A: Many classes include main methods with examples. Expand the project with JUnit tests.
+
+**Q: Can I contribute?**  
+A: Absolutely! Fork the repo and submit a pull request following the guidelines above.
+
+**Q: Which data structure should I learn first?**  
+A: Start with Arrays → Linked Lists → Stacks/Queues → Trees → Graphs
+
+**Q: How do I understand complexity analysis?**  
+A: Check the comments in the code and the Complexity Cheat Sheet above.
+
+## Connect & Support
+
+- 📌 **GitHub**: [github.com/sanjeev729/ds](https://github.com/sanjeev729/ds)
+- ⭐ **Star this repo** if you find it helpful
+- 🐛 **Found a bug?** Open an issue
+- 💡 **Have an idea?** Submit a pull request
+- 📧 **Questions?** Create a discussion
+
+## License
+
+This project is open source and available under the MIT License.
 
 ---
 
-⭐ **Star this repository** if you find it helpful!
+## Quick Navigation
 
-📝 **Found an issue or want to contribute?** Open an issue or submit a pull request.
+| Topic | Link |
+|-------|------|
+| Arrays | `src/main/java/arrays/` |
+| Linked Lists | `src/main/java/linkedlist/` |
+| Trees | `src/main/java/trees/` |
+| Graphs | `src/main/java/graph/` |
+| Dynamic Programming | `src/main/java/dp/` |
+| Backtracking | `src/main/java/backtracking/` |
+| Threading | `src/main/java/Educative/Thread/` |
+| Interview Prep | `src/main/java/revise/leetcode75/` |
 
-🚀 **Happy coding and learning!**
+---
+
+**🚀 Happy coding and learning!**
+
+*Last Updated: May 2026*
 
