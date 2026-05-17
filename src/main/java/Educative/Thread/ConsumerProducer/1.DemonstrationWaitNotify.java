@@ -1,4 +1,4 @@
-package Educative.Thread;
+package Educative.Thread.ConsumerProducer;
 
 class DemonstrationWaitNotify {
     public static void main(String[] args) throws Exception{
