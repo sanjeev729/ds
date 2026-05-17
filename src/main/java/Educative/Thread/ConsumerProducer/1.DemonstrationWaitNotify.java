@@ -51,7 +51,7 @@ class DemonstrationWaitNotify {
 class BlockingQueue<T> {
 
     T[] array;
-    Object lock = new Object();
+    final Object lock = new Object();
     int size = 0;
     int capacity;
     int head = 0;
