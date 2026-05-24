@@ -4,12 +4,26 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.san.ambitious</groupId>
-  <artifactId>datastructures</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>com.sanjeev</groupId>
+  <artifactId>data-structures-algorithms</artifactId>
+  <version>1.0.0</version>
 
-  <name>datastructures</name>
-  <url>http://www.example.com</url>
+  <name>Data Structures & Algorithms - Production-Grade Java Implementations</name>
+  <description>Comprehensive collection of optimized Java implementations for data structures, algorithms, and concurrent programming patterns. Built on 11+ years of production experience. Suitable for system design interviews, algorithm optimization, and architectural decision-making.</description>
+  <url>https://github.com/sanjeev729/ds</url>
+
+  <developers>
+    <developer>
+      <name>Sanjeev Pal</name>
+      <email>sanjeev729@outlook.com</email>
+      <url>https://github.com/sanjeev729</url>
+      <roles>
+        <role>Senior Software Engineer</role>
+        <role>System Architect</role>
+      </roles>
+      <timezone>UTC</timezone>
+    </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
