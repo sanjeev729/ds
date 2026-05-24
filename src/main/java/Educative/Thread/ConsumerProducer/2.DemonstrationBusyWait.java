@@ -5,62 +5,50 @@ import java.util.concurrent.locks.ReentrantLock;
 
 class DemonstrationBusyWait {
     public static void main( String args[] ) throws InterruptedException {
-        final BlockingQueueWithMutex<Integer> q = new BlockingQueueWithMutex<Integer>(5);
+        final BlockingQueueWithMutex<Integer> q = new BlockingQueueWithMutex<>(5);
 
-        Thread producer1 = new Thread(new Runnable() {
-            public void run() {
-                int i = 1;
-                while (true) {
-                    q.enqueue(i);
-                    System.out.println("Producer thread 1 enqueued " + i);
-                    i++;
-                }
+        Thread producer1 = new Thread(() -> {
+            int i = 1000;
+            while (true) {
+                q.enqueue(i);
+                System.out.println("Producer thread 1 enqueued " + i);
+                i++;
             }
         });
 
-        Thread producer2 = new Thread(new Runnable() {
-            public void run() {
-                int i = 5000;
-                while (true) {
-                    q.enqueue(i);
-                    System.out.println("Producer thread 2 enqueued " + i);
-                    i++;
-                }
+        Thread producer2 = new Thread(() -> {
+            int i = 5000;
+            while (true) {
+                q.enqueue(i);
+                System.out.println("Producer thread 2 enqueued " + i);
+                i++;
             }
         });
 
-        Thread producer3 = new Thread(new Runnable() {
-            public void run() {
-                int i = 100000;
-                while (true) {
-                    q.enqueue(i);
-                    System.out.println("Producer thread 3 enqueued " + i);
-                    i++;
-                }
+        Thread producer3 = new Thread(() -> {
+            int i = 100000;
+            while (true) {
+                q.enqueue(i);
+                System.out.println("Producer thread 3 enqueued " + i);
+                i++;
             }
         });
 
-        Thread consumer1 = new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    System.out.println("Consumer thread 1 dequeued " + q.dequeue());
-                }
+        Thread consumer1 = new Thread(() -> {
+            while (true) {
+                System.out.println("Consumer thread 1 dequeued " + q.dequeue());
             }
         });
 
-        Thread consumer2 = new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    System.out.println("Consumer thread 2 dequeued " + q.dequeue());
-                }
+        Thread consumer2 = new Thread(() -> {
+            while (true) {
+                System.out.println("Consumer thread 2 dequeued " + q.dequeue());
             }
         });
 
-        Thread consumer3 = new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    System.out.println("Consumer thread 3 dequeued " + q.dequeue());
-                }
+        Thread consumer3 = new Thread(() -> {
+            while (true) {
+                System.out.println("Consumer thread 3 dequeued " + q.dequeue());
             }
         });
 

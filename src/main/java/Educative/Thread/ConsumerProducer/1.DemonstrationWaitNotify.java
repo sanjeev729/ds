@@ -10,7 +10,7 @@ class DemonstrationWaitNotify {
                     q.enqueue(i);
                     System.out.println("enqueued " + i);
                 }
-            } catch (InterruptedException ie) {
+            } catch (InterruptedException ignored) {
 
             }
         });
@@ -20,7 +20,7 @@ class DemonstrationWaitNotify {
                 for (int i = 0; i < 25; i++) {
                     System.out.println("Thread 2 dequeued: " + q.dequeue());
                 }
-            } catch (InterruptedException ie) {
+            } catch (InterruptedException ignored) {
 
             }
         });
@@ -30,7 +30,7 @@ class DemonstrationWaitNotify {
                 for (int i = 0; i < 25; i++) {
                     System.out.println("Thread 3 dequeued: " + q.dequeue());
                 }
-            } catch (InterruptedException ie) {
+            } catch (InterruptedException ignored) {
 
             }
         });

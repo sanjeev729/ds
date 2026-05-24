@@ -4,43 +4,34 @@ class DemonstrationSemaphore {
     public static void main(String[] args) throws InterruptedException {
         final BlockingQueueWithSemaphore<Integer> q = new BlockingQueueWithSemaphore<Integer>(5);
 
-        Thread t1 = new Thread(new Runnable() {
-
-            public void run() {
-                try {
-                    for (int i = 0; i < 20; i++) {
-                        q.enqueue(i);
-                        System.out.println("enqueued " + i);
-                    }
-                } catch (InterruptedException ie) {
-
+        Thread t1 = new Thread(() -> {
+            try {
+                for (int i = 0; i < 20; i++) {
+                    q.enqueue(i);
+                    System.out.println("enqueued " + i);
                 }
+            } catch (InterruptedException ie) {
+
             }
         });
 
-        Thread t2 = new Thread(new Runnable() {
-
-            public void run() {
-                try {
-                    for (int i = 0; i < 10; i++) {
-                        System.out.println("Thread 2 dequeued: " + q.dequeue());
-                    }
-                } catch (InterruptedException ie) {
-
+        Thread t2 = new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Thread 2 dequeued: " + q.dequeue());
                 }
+            } catch (InterruptedException ie) {
+
             }
         });
 
-        Thread t3 = new Thread(new Runnable() {
-
-            public void run() {
-                try {
-                    for (int i = 0; i < 10; i++) {
-                        System.out.println("Thread 3 dequeued: " + q.dequeue());
-                    }
-                } catch (InterruptedException ie) {
-
+        Thread t3 = new Thread(() -> {
+            try {
+                for (int i = 0; i < 10; i++) {
+                    System.out.println("Thread 3 dequeued: " + q.dequeue());
                 }
+            } catch (InterruptedException ie) {
+
             }
         });
 
@@ -75,6 +66,23 @@ class BlockingQueueWithSemaphore<T> {
         this.semConsumer = new CountingSemaphore(capacity, 0);
     }
 
+    public void enqueue(T item) throws InterruptedException {
+
+        semProducer.acquire();
+        semLock.acquire();
+
+        if (tail == capacity) {
+            tail = 0;
+        }
+
+        array[tail] = item;
+        size++;
+        tail++;
+
+        semLock.release();
+        semConsumer.release();
+    }
+
     public T dequeue() throws InterruptedException {
 
         T item = null;
@@ -95,23 +103,6 @@ class BlockingQueueWithSemaphore<T> {
         semProducer.release();
 
         return item;
-    }
-
-    public void enqueue(T item) throws InterruptedException {
-
-        semProducer.acquire();
-        semLock.acquire();
-
-        if (tail == capacity) {
-            tail = 0;
-        }
-
-        array[tail] = item;
-        size++;
-        tail++;
-
-        semLock.release();
-        semConsumer.release();
     }
 }
 
